@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terrik</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        #game-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #e0f7fa;
+        }
+        #player {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            border-radius: 50%;
+        }
+        .enemy {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-color: green;
+            border-radius: 50%;
+        }
+        .item {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: yellow;
+            border-radius: 50%;
+        }
+        #hp-bar {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            width: 200px;
+            height: 20px;
+            background-color: #ccc;
+        }
+        #hp-bar div {
+            height: 100%;
+            background-color: #f00;
+        }
+        #inventory {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            display: flex;
+            gap: 10px;
+        }
+        .inventory-item {
+            width: 40px;
+            height: 40px;
+            background-color: #ffeb3b;
+            border: 2px solid #000;
+            text-align: center;
+            line-height: 40px;
+            font-size: 20px;
+        }
+        .effect {
+            position: absolute;
+            font-size: 24px;
+            animation: effectAnimation 0.5s forwards;
+        }
+        @keyframes effectAnimation {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+        }
+        /* ジョイスティックのスタイル */
+        #joystick {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            width: 100px;
+            height: 100px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            touch-action: none;
+        }
+        #joystick-handle {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            top: 25px;
+            left: 25px;
+        }
+        /* クラフトメニューのスタイル */
+        #crafting-menu {
+            position: fixed;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: white;
+            border: 1px solid #000;
+            padding: 10px;
+            display: none;
+        }
+        #crafting-menu ul {
+            list-style: none;
+            padding: 0;
+        }
+        #crafting-menu li {
+            margin: 5px 0;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <div id="player"></div>
+    </div>
+    <div id="hp-bar"><div></div></div>
+    <div id="inventory"></div>
+    <div id="joystick">
+        <div id="joystick-handle"></div>
+    </div>
+    <div id="crafting-menu">
+        <h3>クラフトメニュー</h3>
+        <ul id="crafting-recipes"></ul>
+    </div>
+    <button onclick="addRandomItemToInventory()">ランダムアイテムを取得</button>
+    <button onclick="giveAllItems()">全てのアイテムを取得</button>
+    <button onclick="toggleCraftingMenu()">クラフトメニューを開く</button>
+    <script src="app.js"></script>
+</body>
+</html>
